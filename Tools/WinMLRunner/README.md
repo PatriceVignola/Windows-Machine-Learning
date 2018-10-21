@@ -278,7 +278,7 @@ tracerpt.exe winmllog.etl -o logdump.csv -of CSV
 
 ## Visual Studio Code
 
-Another way to build, run and test WinMLRunner is to use [VS Code](https://code.visualstudio.com/). The scripts are in the Tools subfolder and `launch.json` + `tasks.json` have already been configured
+Another way to build, run and test WinMLRunner is to use [VS Code](https://code.visualstudio.com/). The scripts are in the Tools subfolder and `launch.json` + `tasks.json` have already been configured.
 
 ### Build
 
