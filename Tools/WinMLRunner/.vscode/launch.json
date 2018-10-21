@@ -1,0 +1,61 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch (x64-debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/x64/Debug/WinMLRunner.exe",
+            "symbolSearchPath": "${workspaceFolder}/x64/Debug",
+            "args": [
+                "-model",
+                "${workspaceFolder}/x64/debug/SqueezeNet.onnx",
+                "-GPU",
+                "-CPU",
+                "-GPUBoundInput",
+                "-CPUBoundInput",
+                "-RGB",
+                "-BGR",
+                "-Tensor"
+            ],
+            "cwd": "${workspaceRoot}/x64/debug",
+            "externalConsole": true
+        },
+        {
+            "name": "Launch GPU (x64-debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/x64/Debug/WinMLRunner.exe",
+            "symbolSearchPath": "${workspaceFolder}/x64/Debug",
+            "args": [
+                "-model",
+                "${workspaceFolder}/x64/debug/SqueezeNet.onnx",
+                "-GPU",
+                "-GPUBoundInput",
+                "-RGB",
+                "-BGR",
+            ],
+            "cwd": "${workspaceRoot}/x64/debug",
+            "externalConsole": true,
+        },
+        {
+            "name": "Launch CPU (x64-debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/x64/Debug/WinMLRunner.exe",
+            "symbolSearchPath": "${workspaceFolder}/x64/Debug",
+            "args": [
+                "-model",
+                "${workspaceFolder}/x64/debug/SqueezeNet.onnx",
+                "-CPU",
+                "-CPUBoundInput",
+                "-Tensor"
+            ],
+            "cwd": "${workspaceRoot}/x64/debug",
+            "externalConsole": true
+        },
+    ]
+}

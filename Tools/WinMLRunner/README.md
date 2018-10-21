@@ -10,8 +10,10 @@ The WinMLRunner is a command-line based tool that can run .onnx or .pb models wh
 
 ## Build the tool
 
-The easiest way to use these samples without using Git is to download the zip file containing the current version (using the following link or by clicking the "Download ZIP" button on the repo page). You can then unzip the entire archive and use the samples in Visual Studio 2017. Notes: Before you unzip the archive, right-click it, select Properties, and then select Unblock.
-Be sure to unzip the entire archive, and not just individual samples. The samples all depend on the SharedContent folder in the archive. In Visual Studio 2017, the platform target defaults to ARM, so be sure to change that to x64 or x86 if you want to test on a non-ARM device. Reminder: If you unzip individual samples, they will not build due to references to other portions of the ZIP file that were not unzipped. 
+The easiest way to download WinMLRunner without using Git is to download the zip file containing the current version (using the link on the repo's README or by clicking the "Download ZIP" button on the repo page). You can then unzip the entire archive and use the tool in Visual Studio 2017. Notes: Before you unzip the archive, right-click it, select Properties, and then select Unblock.
+Be sure to unzip the entire archive, and not just WinMLRunner. This tool depends on the SharedContent folder in the archive and the tests depend on the Testing folder.
+
+In Visual Studio 2017, the platform target defaults to ARM, so be sure to change that to x64 or x86 if you want to test on a non-ARM device. Reminder: If you unzip individual samples, they will not build due to references to other portions of the ZIP file that were not unzipped. 
 You must unzip the entire archive if you intend to build the samples.
 
 ## Run the tool
@@ -273,5 +275,22 @@ tracerpt.exe winmllog.etl -o logdump.csv -of CSV
 
 2. Windows Performance Analyzer (from Visual Studio)
  * Launch Windows Performance Analyzer and open the winmllog.etl.
+
+## Visual Studio Code
+
+Another way to build, run and test WinMLRunner is to use [VS Code](https://code.visualstudio.com/). The scripts are in the Tools subfolder and `launch.json` + `tasks.json` have already been configured
+
+### Build
+
+`ctrl+shift+p` -> `Run Build Task` or `ctrl+shift+b`.
+
+### Test
+
+`ctrl+shift+p` -> `Run Test Task`.
+
+### Run
+
+To run WinMLRunner using the debugger and have the ability to place breakpoints, simply install the [C/C++ extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) and hit `F5`.
+
 ## License
 MIT. See [LICENSE file](https://github.com/Microsoft/Windows-Machine-Learning/blob/master/LICENSE).

@@ -1,0 +1,85 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build (x64-debug)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "powershell.exe '${workspaceFolder}\\tools\\BuildSolution.ps1' -Arch x64 -Config Debug",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (x64-release)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "powershell.exe '${workspaceFolder}\\tools\\BuildSolution.ps1' -Arch x64 -Config Release",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (x86-debug)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "powershell.exe '${workspaceFolder}\\tools\\BuildSolution.ps1' -Arch x86 -Config Debug",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (x86-release)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "powershell.exe '${workspaceFolder}\\tools\\BuildSolution.ps1' -Arch x86 -Config Release",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test (x64-debug)",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "powershell.exe '${workspaceFolder}\\tools\\RunTests.ps1' -Arch x64 -Config Debug",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test (x64-release)",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "powershell.exe '${workspaceFolder}\\tools\\RunTests.ps1' -Arch x64 -Config Release",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test (x86-debug)",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "powershell.exe '${workspaceFolder}\\tools\\RunTests.ps1' -Arch x86 -Config Debug",
+            "problemMatcher": []
+        },
+        {
+            "label": "Test (x86-release)",
+            "type": "shell",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "powershell.exe '${workspaceFolder}\\tools\\RunTests.ps1' -Arch x86 -Config Release",
+            "problemMatcher": []
+        }
+    ]
+}
