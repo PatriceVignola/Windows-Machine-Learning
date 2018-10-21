@@ -41,13 +41,13 @@ if (-not (Test-Path $InstallPath))
 }
 
 Write-Verbose "Found Visual Studio installation: $InstallPath"
-Write-Verbose 'Looking for MSBuild...'
+Write-Verbose 'Looking for vstest.console.exe...'
 
 $VSTestPath = "$InstallPath\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
 
 if (-not (Test-Path $VSTestPath))
 {
-    throw 'Could not find MSBuild.exe. Please make sure that Visual Studio 2017 is installed.'
+    throw 'Could not find vstest.console.exe. Please make sure that Visual Studio 2017 is installed.'
 }
 
 Write-Host "Found VSTest: $VSTestPath"
