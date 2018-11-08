@@ -71,7 +71,9 @@ std::vector<ILearningModelFeatureValue> GenerateInputFeatures(
     const CommandLineArgs& args,
     InputBindingType inputBindingType,
     InputDataType inputDataType,
-    const IDirect3DDevice winrtDevice)
+    const IDirect3DDevice winrtDevice,
+    VideoFrame cachedVideoFrame = nullptr
+)
 {
     std::vector<ILearningModelFeatureValue> inputFeatures;
 
@@ -88,7 +90,7 @@ std::vector<ILearningModelFeatureValue> GenerateInputFeatures(
         }
         else
         {
-            auto imageFeature = BindingUtilities::CreateBindableImage(description, args.ImagePath(), inputBindingType, inputDataType, winrtDevice);
+            auto imageFeature = BindingUtilities::CreateBindableImage(description, args.ImagePath(), inputBindingType, inputDataType, winrtDevice, cachedVideoFrame);
             inputFeatures.push_back(imageFeature);
         }
     }
@@ -272,6 +274,8 @@ HRESULT EvaluateModel(
 
     bool isGarbageData = !args.CsvPath().empty() || !args.ImagePath().empty();
 
+    VideoFrame cachedVideoFrame = nullptr;
+
     // Run the binding + evaluate multiple times and average the results
     for (uint32_t i = 0; i < numIterations; i++)
     {
@@ -279,7 +283,7 @@ HRESULT EvaluateModel(
 
         output.PrintBindingInfo(i + 1, deviceType, inputBindingType, inputDataType, deviceCreationLocation);
 
-        std::vector<ILearningModelFeatureValue> inputFeatures = GenerateInputFeatures(model, args, inputBindingType, inputDataType, winrtDevice);
+        std::vector<ILearningModelFeatureValue> inputFeatures = GenerateInputFeatures(model, args, inputBindingType, inputDataType, winrtDevice, cachedVideoFrame);
         HRESULT bindInputResult = BindInputFeatures(model, context, inputFeatures, args, output, captureIterationPerf);
 
         if (FAILED(bindInputResult))
@@ -294,6 +298,17 @@ HRESULT EvaluateModel(
         if (FAILED(evalResult))
         {
             return evalResult;
+        }
+
+        if (args.ReuseVideoFrame())
+        {
+            // Reuse the VideoFrame allocated memory for the next iteration (this is how camera apps should typically use the API)
+            ImageFeatureValue imageFeatureValue = inputFeatures[0].try_as<ImageFeatureValue>();
+
+            if (imageFeatureValue)
+            {
+                cachedVideoFrame = imageFeatureValue.VideoFrame();
+            }
         }
     }
 

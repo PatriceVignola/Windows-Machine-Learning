@@ -22,6 +22,7 @@ void CommandLineArgs::PrintUsage() {
     std::cout << "  -RGB : load the input as an RGB image" << std::endl;
     std::cout << "  -BGR : load the input as a BGR image" << std::endl;
     std::cout << "  -tensor : load the input as a tensor" << std::endl;
+    std::cout << "  -ReuseVideoFrame : use the same video frame object between iterations (with different data)" << std::endl;
     std::cout << "  -perf : capture timing measurements" << std::endl;
     std::cout << "  -iterations : # times perf measurements will be run/averaged" << std::endl;
     std::cout << "  -input <fully qualified path>: binds image or CSV to model" << std::endl;
@@ -93,6 +94,10 @@ CommandLineArgs::CommandLineArgs()
         else if ((_wcsicmp(args[i], L"-tensor") == 0))
         {
             m_useTensor = true;
+        }
+        else if ((_wcsicmp(args[i], L"-ReuseVideoFrame") == 0))
+        {
+            m_reuseVideoFrame = true;
         }
         else if ((_wcsicmp(args[i], L"-CPUBoundInput") == 0))
         {

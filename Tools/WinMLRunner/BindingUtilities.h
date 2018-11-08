@@ -265,7 +265,8 @@ namespace BindingUtilities
         const std::wstring& imagePath,
         InputBindingType inputBindingType,
         InputDataType inputDataType,
-        const IDirect3DDevice winrtDevice
+        const IDirect3DDevice winrtDevice,
+        VideoFrame cachedVideoFrame = nullptr
     )
     {
         auto imageDescriptor = featureDescriptor.try_as<TensorFeatureDescriptor>();
@@ -281,6 +282,12 @@ namespace BindingUtilities
             : LoadImageFile(imagePath.c_str(), inputDataType);
 
         auto videoFrame = CreateVideoFrame(softwareBitmap, inputBindingType, inputDataType, winrtDevice);
+
+        if (cachedVideoFrame)
+        {
+            videoFrame.CopyToAsync(cachedVideoFrame).get();
+            return ImageFeatureValue::CreateFromVideoFrame(cachedVideoFrame);
+        }
 
         return ImageFeatureValue::CreateFromVideoFrame(videoFrame);
     }

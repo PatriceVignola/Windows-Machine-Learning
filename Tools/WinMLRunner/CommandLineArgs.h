@@ -16,6 +16,7 @@ public:
     bool EnableDebugOutput() const { return m_debug; }
     bool Silent() const { return m_silent; }
     bool CreateDeviceOnClient() const { return m_createDeviceOnClient; }
+    bool ReuseVideoFrame() const { return m_reuseVideoFrame; }
    
     const std::wstring& ImagePath() const { return m_imagePath; }
     const std::wstring& CsvPath() const { return m_csvData; }
@@ -78,6 +79,7 @@ private:
     bool m_ignoreFirstRun = false;
     bool m_debug = false;
     bool m_silent = false;
+    bool m_reuseVideoFrame = false;
 
     std::wstring m_modelFolderPath;
     std::wstring m_modelPath;
